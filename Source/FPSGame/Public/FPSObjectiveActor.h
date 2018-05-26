@@ -19,6 +19,9 @@ public:
 
 protected:
 
+	UPROPERTY(EditDefaultsOnly, Category = "Gameplay")
+	USoundBase* PickupSound;
+
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UStaticMeshComponent* MeshComp;
 

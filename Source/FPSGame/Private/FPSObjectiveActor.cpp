@@ -45,6 +45,9 @@ void AFPSObjectiveActor::NotifyActorBeginOverlap(AActor* OtherActor)
 	PlayEffects();
 	AFPSCharacter* MyCharacter = Cast<AFPSCharacter>(OtherActor);
 	if (MyCharacter) {
+		if (PickupSound) {
+			UGameplayStatics::PlaySoundAtLocation(this, PickupSound, GetActorLocation());
+		}
 		MyCharacter->bIsCarryingObjective = true;
 		Destroy();
 	}

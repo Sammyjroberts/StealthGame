@@ -18,6 +18,8 @@ public:
 	AFPSExtractionZone();
 
 protected:
+	UPROPERTY(EditDefaultsOnly, Category = "Gameplay")
+	USoundBase* EnterSound;
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UDecalComponent* DecalComp;
 

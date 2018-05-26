@@ -33,21 +33,28 @@ void AFPSExtractionZone::HandleOverlap(UPrimitiveComponent* OverlappedComponent,
 	AFPSCharacter* MyPawn = Cast<AFPSCharacter>(OtherActor);
 	if (MyPawn == nullptr)
 	{
+		UE_LOG(LogTemp, Log, TEXT("Null Pawn"))
+
 		return;
 	}
 
-	if (MyPawn->bIsCarryingObjective) 
+	if (MyPawn->bIsCarryingObjective)
 	{
 		UE_LOG(LogTemp, Log, TEXT("Overlapped with extraction zone!"))
-
-			AFPSGameMode* GM = Cast<AFPSGameMode>(GetWorld()->GetAuthGameMode());
+		AFPSGameMode* GM = Cast<AFPSGameMode>(GetWorld()->GetAuthGameMode());
+		if (EnterSound) {
+			UGameplayStatics::PlaySound2D(this, EnterSound);
+		}
+		
 		if (GM)
 		{
 			GM->CompleteMission(MyPawn);
 		}
 	}
-	else 
+	else
 	{
+		UE_LOG(LogTemp, Log, TEXT("NO OBJECTIVE"))
+
 		UGameplayStatics::PlaySound2D(this, ObjectiveMissingSound);
 	}
 
